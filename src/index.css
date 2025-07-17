@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@font-face {
+  font-family: 'NeueBit';
+  src: url(./assets/fonts/PPNeueBit-Bold.otf)format('opentype');
+}
+
+
+@font-face {
+  font-family: 'Mori';
+  src: url(./assets/fonts/PPMori-Regular.otf)format('opentype');
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'Mori';
+}
+
