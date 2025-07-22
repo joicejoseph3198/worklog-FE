@@ -4,7 +4,6 @@ import { AxiosProvider } from "./util/useAxios";
 import { router } from "./util/router";
 import { RouterProvider } from "react-router";
 import { AnimatePresence } from "motion/react";
-import PopupBanner from "./components/PopUpBanner";
 import { useEffect, useState } from "react";
 
 function App() {
