@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router";
 import { Reveal } from "../util/Reveal";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
+import bannerImage from '../assets/images/worlog(s)-banner-image.png';
 
 export const LandingPage = () => {
     const parsedDate = new Date();
@@ -51,7 +52,7 @@ export const LandingPage = () => {
             </div>
             <div className="flex items-center justify-center bg-[#ff6400] px-10 h-auto">
                 <img
-                    src="src/assets/images/worlog(s)-banner-image.png"
+                    src={bannerImage}
                     alt=""
                     className="w-screen h-2/3 object-fill rounded-t-2xl"
                 />
