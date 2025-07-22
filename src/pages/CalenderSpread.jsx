@@ -1,9 +1,20 @@
 import React, { useState } from "react";
 import { Header } from "../components/Header";
+import { useNavigate } from "react-router";
 
 
 export const CalenderSpread = () => {
-    const [currentDate] = useState(new Date());
+    const [date, setDate] = useState(new Date());
+    const goToPreviousMonth = () => {
+        const newDate = new Date(date.getFullYear(), date.getMonth() - 1, 1);
+        setDate(newDate);
+    };
+
+    const goToNextMonth = () => {
+        const newDate = new Date(date.getFullYear(), date.getMonth() + 1, 1);
+        setDate(newDate);
+    };
+
     const monthNames = [
         "January",
         "February",
@@ -43,71 +54,118 @@ export const CalenderSpread = () => {
         return days;
     };
 
-    const days = getDaysInMonth(currentDate);
+    const days = getDaysInMonth(date);
+    const navigate = useNavigate();
 
     return (
-        <div
-            className="bg-white text-black p-4 mx-auto"
-            style={{
-                backgroundImage: `radial-gradient(circle, rgba(153, 153, 153, 0.52) 1px, transparent 1px)`,
-                backgroundSize: `20px 20px`,
-                backgroundPosition: `center`,
-            }}
-        >
-            <div className="mx-auto">
-                {/* Header */}
-                <div className="flex px-2 mb-6">
-                    <div className="flex items-center space-x-4">
-                        <h1 className="text-5xl font-medium font-[NeueBit]">Calendar View </h1>
-                    </div>
-                </div>
+        <div>
+            <Header />
+            <div
+                className="bg-white text-black h-screen p-4 w-screen overflow-x-scroll"
+                style={{
+                    backgroundImage: `radial-gradient(circle, rgba(153, 153, 153, 0.52) 1px, transparent 1px)`,
+                    backgroundSize: `20px 20px`,
+                    backgroundPosition: `center`,
+                }}
+            >
+                <div className="overflow-x-auto">
+                    <div className="min-w-[1600px]">
 
-                {/* Month and Total */}
-                <div className="mb-6">
-                    <div className="flex items-center justify-between">
-                        <h2 className="text-2xl font-light font-semibold">
-                        {monthNames[currentDate.getMonth()]}, {currentDate.getFullYear()}
-                        </h2>
-                    </div>
-                </div>
-
-                {/* Calendar */}
-                <div className="max-w-3/4 mx-auto">
-                    {/* Day headers */}
-                    <div className="grid grid-cols-7 gap-1 mb-4">
-                        {dayNames.map((day) => (
-                            <div
-                                key={day}
-                                className="text-center text-2xl text-slate-700 font-[NeueBit] py-2"
-                            >
-                                {day}
+                        {/* Calendar */}
+                        <div className="max-w-3/5 mx-auto pt-10">
+                            <div className="flex px-2 mb-6 items-center justify-between">
+                                <div className="flex gap-10 items-center">
+                                    <h2 className="text-lg font-bold text-[#ff5400]">{"Navigate To"}</h2>
+                                </div>
+                                <div className="flex gap-10 items-center">
+                                    <button
+                                        onClick={goToPreviousMonth}
+                                        className="text-3xl text-slate-400 hover:text-black hover:cursor-pointer"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            strokeWidth={1.5}
+                                            stroke="currentColor"
+                                            className="size-6"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+                                            />
+                                        </svg>
+                                    </button>
+                                    <h2 className="text-4xl font-medium font-[NeueBit]">
+                                        {monthNames[date.getMonth()]}, {date.getFullYear()}
+                                    </h2>
+                                    <button
+                                        onClick={goToNextMonth}
+                                        className="text-3xl text-slate-400 hover:text-black hover:cursor-pointer"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            strokeWidth={1.5}
+                                            stroke="currentColor"
+                                            className="size-6"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                                            />
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
-                        ))}
-                    </div>
+                            {/* Day headers */}
+                            <div className="grid grid-cols-7 gap-1 mb-4 align-center">
+                                {dayNames.map((day) => (
+                                    <div
+                                        key={day}
+                                        className="text-center text-2xl text-slate-700 font-[NeueBit] py-2"
+                                    >
+                                        {day}
+                                    </div>
+                                ))}
+                            </div>
 
-                    {/* Calendar grid */}
-                    <div className="grid grid-cols-7 gap-x-2 bg-white p-2 rounded-xl">
-                        {days.map((dayObj, index) => (
-                            <div
-                                key={index}
-                                className={`aspect-square flex items-center justify-center relative p-1 ${dayObj.showBox
-                                        ? `border-2 bg-gray-100 rounded-2xl hover:bg-[#ff5400]`
-                                        : ``
-                                    }`}
-                            >
-                                {dayObj.showBox && (
-                                    <span
-                                        className={`text-lg ${dayObj.day % 2 ? "font-semibold text-[#ff1000]" : "black"
+                            {/* Calendar grid */}
+                            <div className="grid grid-cols-7 gap-x-2 bg-white p-2 rounded-xl">
+                                {days.map((dayObj, index) => (
+                                    <div
+                                        onClick={() => {
+                                            if (!dayObj.showBox) return;
+                                            const year = date.getFullYear();
+                                            const month = String(date.getMonth() + 1).padStart(2, "0");
+                                            const day = String(dayObj.day).padStart(2, "0");
+                                            const fullDate = `${year}-${month}-${day}`;
+                                            console.log(fullDate)
+                                            navigate(`/${fullDate}`);
+                                        }}
+                                        key={index}
+                                        className={`aspect-square flex items-center justify-center relative p-1 ${dayObj.showBox
+                                            ? `border-2 bg-gray-100 rounded-2xl hover:bg-[#ff5400] hover:cursor-pointer`
+                                            : ``
                                             }`}
                                     >
-                                        {dayObj.day}
-                                    </span>
-                                )}
+                                        {dayObj.showBox && (
+                                            <span className="text-lg font-semibold text-[#ff1000]">
+                                                {dayObj.day}
+                                            </span>
+                                        )}
+                                    </div>
+                                ))}
                             </div>
-                        ))}
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     );
 };

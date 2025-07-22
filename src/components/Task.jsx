@@ -5,6 +5,7 @@ import { useAxios } from "../util/useAxios";
 import { useTaskStore } from "../store/useTaskStore";
 import { TaskSetting } from "./TaskSetting";
 import { useModalStore } from "../store/useModalStore";
+import { useParams } from "react-router";
 
 export const Task = () => {
   // axios
@@ -19,18 +20,20 @@ export const Task = () => {
   const changeTitle = useModalStore((state) => state.changeTitle);
   const changeDescription = useModalStore((state) => state.changeDescription);
   const setModalHeading = useModalStore((state) => state.setModalHeading);
-  const setCurrentTaskId = useModalStore((state)=> state.setCurrentTaskId);
+  const setCurrentTaskId = useModalStore((state) => state.setCurrentTaskId);
   const updateTask = useTaskStore((state) => state.updateTask);
 
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
+  const { dateParam } = useParams();
+  // fallback to today's date if param is missing or invalid
+  const parsedDate = dateParam ? new Date(dateParam) : new Date();
+  const year = parsedDate.getFullYear();
+  const month = String(parsedDate.getMonth() + 1).padStart(2, "0");
+  const day = String(parsedDate.getDate()).padStart(2, "0");
   const formattedDate = `${year}-${month}-${day}`;
 
   useEffect(() => {
     fetchTasks(axiosInstance, formattedDate);
-  }, []);
+  }, [dateParam]);
 
   // Handler
   const toggleTask = (taskId) => {
@@ -44,12 +47,12 @@ export const Task = () => {
     changeTag(fetchedTask.tag);
     changeTitle(fetchedTask.title);
     changeDescription(fetchedTask.description);
-    setModalHeading("View Details")
+    setModalHeading("view details")
     showModal();
   };
 
   const handleAddTask = () => {
-    setModalHeading("Add Task")
+    setModalHeading("add task")
     showModal()
   }
 
@@ -63,7 +66,7 @@ export const Task = () => {
     changeTitle(fetchedTask.title);
     changeDescription(fetchedTask.description);
     setCurrentTaskId(id)
-    setModalHeading("Edit Details")
+    setModalHeading("edit details")
     showModal();
   };
 

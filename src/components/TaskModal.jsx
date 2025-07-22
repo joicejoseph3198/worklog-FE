@@ -4,6 +4,7 @@ import { Button } from "./Button";
 import { useTaskStore } from "../store/useTaskStore";
 import { useAxios } from "../util/useAxios";
 import { useModalStore } from "../store/useModalStore";
+import { useParams } from "react-router";
 
 export const TaskModal = ({ modalHeading }) => {
   // Axios:
@@ -21,24 +22,22 @@ export const TaskModal = ({ modalHeading }) => {
   const updateTask = useTaskStore((state) => state.updateTask)
   const hideModal = useModalStore((state) => state.hideModal)
 
+  const { dateParam } = useParams();
+  // fallback to today's date if param is missing or invalid
+  const parsedDate = dateParam ? new Date(dateParam) : new Date();
+  const year = parsedDate.getFullYear();
+  const month = String(parsedDate.getMonth() + 1).padStart(2, "0");
+  const day = String(parsedDate.getDate()).padStart(2, "0");
+  const formattedDate = `${year}-${month}-${day}`;
+
   // Handler:
   const handleAdd = () => {
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    const formattedDate = `${year}-${month}-${day}`;
     if (title.trim() === "") return;
     addTask(axiosInstance, { title, tag, description, date: formattedDate });
     hideModal()
   };
 
   const handleUpdate = () => {
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    const formattedDate = `${year}-${month}-${day}`;
     if (title.trim() === "") return;
     updateTask(axiosInstance, { id: id, title, tag, description, date: formattedDate })
     hideModal()
@@ -76,10 +75,10 @@ export const TaskModal = ({ modalHeading }) => {
           text-sm border-slate-700 border-2 rounded-md text-sm font-semibold"
         />
         <div className="flex flex-row justify-end gap-5 py-5 px-2">
-          {modalHeading === "Add Task" && (
+          {modalHeading === "add task" && (
             <Button buttonText="Add" color="white" onClickHandler={handleAdd} />
           )}
-          {modalHeading === "Edit Details" && (
+          {modalHeading === "edit details" && (
             <Button buttonText="Update" color="white" onClickHandler={handleUpdate} />
           )}
           <Button buttonText="Cancel" color="white" onClickHandler={hideModal} />

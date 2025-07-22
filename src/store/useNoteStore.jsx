@@ -12,7 +12,7 @@ export const useNoteStore = create((set, get) => ({
             }
             set({ note: updatedNote });
         } catch (err) {
-            console.error("Failed to fetch note");
+            console.error("Failed to fetch note", err);
         }
     },
     upsertNote: async (axiosInstance, body, date) => {

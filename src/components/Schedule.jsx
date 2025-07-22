@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Reveal } from "../util/Reveal";
 import { useScheduledStore } from "../store/useScheduleStore";
 import { useAxios } from "../util/useAxios";
+import { useParams } from "react-router";
 
 export const Schedule = () => {
   const saveSchedule = useScheduledStore((store) => store.saveSchedule)
@@ -9,15 +10,17 @@ export const Schedule = () => {
   const slots = useScheduledStore((store)=> store.slots)
   const axiosInstance = useAxios();
 
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
+  const { dateParam } = useParams();
+  // fallback to today's date if param is missing or invalid
+  const parsedDate = dateParam ? new Date(dateParam) : new Date();
+  const year = parsedDate.getFullYear();
+  const month = String(parsedDate.getMonth() + 1).padStart(2, "0");
+  const day = String(parsedDate.getDate()).padStart(2, "0");
   const formattedDate = `${year}-${month}-${day}`;
 
   useEffect(()=> {
     fetchSchedule(axiosInstance, formattedDate)
-  },[])
+  },[dateParam])
 
   useEffect(() => {
     const fetchedSchedule = Array.from({ length: 24 }, () => "");

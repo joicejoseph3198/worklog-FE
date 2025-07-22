@@ -1,24 +1,19 @@
 import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
 import "./App.css";
-import { DailyWorkLogSpread } from "./pages/DailyWorkLogSpread";
 import { AxiosProvider } from "./util/useAxios";
-import { CalenderSpread } from "./pages/CalenderSpread";
-import { Header } from "./components/Header";
+import { router } from "./util/router";
+import { RouterProvider } from "react-router";
+import { AnimatePresence } from "motion/react";
 
 function App() {
   return (
     <>
-      <header>
-        <SignedOut>
-          <SignInButton />
-        </SignedOut>
-        <SignedIn>
-          <AxiosProvider>
-            <Header/>
-            <DailyWorkLogSpread />
-          </AxiosProvider>
-        </SignedIn>
-      </header>
+      {/* App should be accessible regardless of sign-in */}
+      <AnimatePresence mode="wait">
+        <AxiosProvider>
+          <RouterProvider router={router} />
+        </AxiosProvider>
+      </AnimatePresence>
     </>
   );
 }
