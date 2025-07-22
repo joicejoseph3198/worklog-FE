@@ -41,7 +41,7 @@ export const LandingPage = () => {
                         <h1 className="text-8xl font-[NeueBit]"> worklog(s).</h1>
                     </Reveal>
                     <Reveal color="white">
-                        <h1 className="text-xl font-bold">
+                        <h1 className="text-xl font-bold text-center">
                             {" "}
                             simple. minimal. organized - focused digital workspace for
                             personal productivity.
