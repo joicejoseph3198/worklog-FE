@@ -4,13 +4,14 @@ import { createContext, useContext } from "react";
 
 export const axiosContext = createContext(null);
 export const useAxios = () => useContext(axiosContext);
+const baseURL = import.meta.env.VITE_API_URL
 
 export const AxiosProvider = ({ children }) => {
   const { getToken } = useAuth();
   const {signOut} = useClerk();
 
   const axiosInstance = axios.create({
-    baseURL: "http://localhost:8000/v1/api",
+    baseURL,
     headers: {
       "Content-Type": "application/json",
     },
