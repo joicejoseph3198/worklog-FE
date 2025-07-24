@@ -45,10 +45,10 @@ export const Notes = () => {
   return (
     <div className="flex-shrink-0 w-1/4 h-full p-4 mb-4 flex flex-col">
       <Reveal>
-        <h2 className="text-4xl mb-2 font-[NeueBit]">Notes</h2>
+        <h2 className="text-3xl mb-2 font-[NeueBit]">Notes</h2>
       </Reveal>
       <textarea
-        className="w-full flex-1 py-1 px-4 text-base resize-none outline-none rounded-lg"
+        className="w-full flex-1 py-1 px-4 text-[16px] resize-none outline-none rounded-lg"
         spellCheck={false}
         value={bodyInput}
         onChange={(e) => setBodyInput(e.target.value)}

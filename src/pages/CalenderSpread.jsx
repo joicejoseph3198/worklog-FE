@@ -58,24 +58,19 @@ export const CalenderSpread = () => {
     const navigate = useNavigate();
 
     return (
-        <div>
+        <div className="bg-[#ff6400] flex flex-col w-screen">
             <Header />
             <div
-                className="bg-white text-black h-screen p-4 w-screen overflow-x-scroll"
-                style={{
-                    backgroundImage: `radial-gradient(circle, rgba(153, 153, 153, 0.52) 1px, transparent 1px)`,
-                    backgroundSize: `20px 20px`,
-                    backgroundPosition: `center`,
-                }}
+                className="bg-[white] text-black h-screen rounded-xl mx-3 mb-3 overflow-x-scroll "
             >
                 <div className="overflow-x-auto">
                     <div className="min-w-[1600px]">
 
                         {/* Calendar */}
                         <div className="max-w-3/5 mx-auto pt-10">
-                            <div className="flex px-2 mb-6 items-center justify-between">
+                            <div className="flex px-2 mb-6 items-center justify-between border-b pb-5 border-gray-300">
                                 <div className="flex gap-10 items-center">
-                                    <h2 className="text-lg font-bold text-[#ff5400]">{"Navigate To"}</h2>
+                                    <h2 className="text-xl font-bold">{"Overview"}</h2>
                                 </div>
                                 <div className="flex gap-10 items-center">
                                     <button
@@ -134,7 +129,12 @@ export const CalenderSpread = () => {
                             </div>
 
                             {/* Calendar grid */}
-                            <div className="grid grid-cols-7 gap-x-2 bg-white p-2 rounded-xl">
+                            <div className="grid grid-cols-7 gap-x-2 bg-white p-2 rounded-xl h-full"
+                            style={{
+                                backgroundImage: `radial-gradient(circle, rgba(153, 153, 153, 0.52) 1px, transparent 1px)`,
+                                backgroundSize: `20px 20px`,
+                                backgroundPosition: `center`,
+                            }}>
                                 {days.map((dayObj, index) => (
                                     <div
                                         onClick={() => {
@@ -153,7 +153,7 @@ export const CalenderSpread = () => {
                                             }`}
                                     >
                                         {dayObj.showBox && (
-                                            <span className="text-lg font-semibold text-[#ff1000]">
+                                            <span className="text-base font-semibold text-[#ff1000]">
                                                 {dayObj.day}
                                             </span>
                                         )}

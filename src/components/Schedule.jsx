@@ -61,7 +61,7 @@ export const Schedule = () => {
     <div className="w-1/2 p-4">
       <div className="flex items-center justify-between mb-4">
         <Reveal>
-          <h2 className="text-4xl mb-2 font-[NeueBit]">Schedule</h2>
+          <h2 className="text-3xl mb-2 font-[NeueBit]">Schedule</h2>
         </Reveal>
         <button
           className="font-bold hover:cursor-pointer text-[#ff4500]"

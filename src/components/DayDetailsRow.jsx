@@ -27,7 +27,8 @@ export const DayDetailsRow = () => {
   const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
 
   return (
-    <div className="w-full p-4 flex flex-row items-center justify-between border-b border-gray-300 overflow-x-scroll min-w-[1200px]">
+    <div className="bg-white rounded-t-xl w-full p-4 flex flex-row items-center justify-between
+     overflow-x-scroll min-w-[1200px] border-b border-gray-300">
       <div className="text-3xl mb-2 font-[NeueBit] text-[#ff4500]">{formattedDate}</div>
       <Reveal>
         <div className="flex space-x-2">

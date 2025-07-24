@@ -75,7 +75,7 @@ export const Task = () => {
       <div>
         <div className="flex justify-between items-center mb-4">
           <Reveal>
-            <h2 className="text-4xl mb-2 font-[NeueBit]">Tasks</h2>
+            <h2 className="text-3xl mb-2 font-[NeueBit]">Tasks</h2>
           </Reveal>
           <button
             onClick={handleAddTask}

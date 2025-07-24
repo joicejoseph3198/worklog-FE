@@ -13,17 +13,16 @@ export const DailyWorkLogSpread = () => {
 
 
   return (
-    <div className="overflow-x-scroll">
+    <div className="overflow-x-scroll px-3 pb-3 flex flex-col justify-center w-screen bg-[#ff6400]">
       <Header/>
       <DayDetailsRow />
       {/* Main spread content container */}
-      <div className={`relative`}>
+      <div className={`relative bg-white rounded-b-xl `}>
         {/* Content to blur */}
         <div
           className={`
                 flex 
-                px-5
-                w-screen 
+                w-full
                 h-screen 
                 text-black
                 overflow-x-scroll
