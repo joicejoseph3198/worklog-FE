@@ -22,8 +22,6 @@ export const useTaskStore = create((set, get) => ({
         } catch (err) {
             console.error("Failed to add task", err);
         }
-
-
     },
 
     deleteTask: async (axiosInstance, id) => {
@@ -49,10 +47,38 @@ export const useTaskStore = create((set, get) => ({
                     task.id === taskId ? response.data : task
                 )
             }));
-
         } catch (err) {
             console.error("Failed to update task", err);
         }
+    },
+
+    updateTaskStatus: async (axiosInstance, taskId, newStatus) => {
+        try {
+            const currentTask = get().tasks.find(task => task.id === taskId);
+            if (!currentTask) {
+                console.error("Task not found");
+                return;
+            }
+
+            const updatedTask = { ...currentTask, status: newStatus };
+            const response = await axiosInstance.patch("/task/update/", updatedTask);
+            
+            set((state) => ({
+                tasks: state.tasks.map(task =>
+                    task.id === taskId ? response.data : task
+                )
+            }));
+        } catch (err) {
+            console.error("Failed to update task status", err);
+        }
+    },
+
+    filterTasksByStatus: (status) => {
+        const { tasks } = get();
+        if (!status || status === 'all') {
+            return tasks;
+        }
+        return tasks.filter(task => task.status === status);
     },
 
     fetchTaskById: async (axiosInstance, id) => {

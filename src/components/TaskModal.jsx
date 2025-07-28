@@ -5,6 +5,7 @@ import { useTaskStore } from "../store/useTaskStore";
 import { useAxios } from "../util/useAxios";
 import { useModalStore } from "../store/useModalStore";
 import { useParams } from "react-router";
+import { StatusSelector } from "./StatusSelector";
 
 export const TaskModal = ({ modalHeading }) => {
   // Axios:
@@ -22,6 +23,9 @@ export const TaskModal = ({ modalHeading }) => {
   const updateTask = useTaskStore((state) => state.updateTask)
   const hideModal = useModalStore((state) => state.hideModal)
 
+  // Status state
+  const [status, setStatus] = React.useState('not-started');
+
   const { dateParam } = useParams();
   // fallback to today's date if param is missing or invalid
   const parsedDate = dateParam ? new Date(dateParam) : new Date();
@@ -33,13 +37,13 @@ export const TaskModal = ({ modalHeading }) => {
   // Handler:
   const handleAdd = () => {
     if (title.trim() === "") return;
-    addTask(axiosInstance, { title, tag, description, date: formattedDate });
+    addTask(axiosInstance, { title, tag, description, date: formattedDate, status });
     hideModal()
   };
 
   const handleUpdate = () => {
     if (title.trim() === "") return;
-    updateTask(axiosInstance, { id: id, title, tag, description, date: formattedDate })
+    updateTask(axiosInstance, { id: id, title, tag, description, date: formattedDate, status })
     hideModal()
   }
 
@@ -63,6 +67,21 @@ export const TaskModal = ({ modalHeading }) => {
             onChangeHandler={(e) => changeTitle(e.target.value)}
           />
         </div>
+        
+        {/* Status Selection */}
+        <div className="flex gap-10 justify-between text-slate-700 pb-4">
+          <div className="flex-1">
+            <h3 className="pb-2 text-2xl font-[NeueBit]">Status</h3>
+            <StatusSelector
+              value={status}
+              onChange={setStatus}
+              size="md"
+              showLabel={true}
+            />
+          </div>
+          <div className="flex-1"></div> {/* Spacer */}
+        </div>
+        
         <p className="text-2xl font-[NeueBit]">
           Additonal Details (limit: 500 characters)
         </p>

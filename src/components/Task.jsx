@@ -6,6 +6,7 @@ import { useTaskStore } from "../store/useTaskStore";
 import { TaskSetting } from "./TaskSetting";
 import { useModalStore } from "../store/useModalStore";
 import { useParams } from "react-router";
+import { StatusIndicator, StatusSelector } from "./StatusSelector";
 
 export const Task = () => {
   // axios
@@ -15,6 +16,7 @@ export const Task = () => {
   const tasks = useTaskStore((state) => state.tasks);
   const fetchTasks = useTaskStore((state) => state.fetchTasks);
   const deleteTask = useTaskStore((state) => state.deleteTask);
+  const updateTaskStatus = useTaskStore((state) => state.updateTaskStatus);
   const showModal = useModalStore((state) => state.showModal);
   const changeTag = useModalStore((state) => state.changeTag);
   const changeTitle = useModalStore((state) => state.changeTitle);
@@ -40,6 +42,10 @@ export const Task = () => {
     const fetchedTask = tasks.find((t) => t.id == taskId);
     fetchedTask.ticked = !fetchedTask.ticked;
     updateTask(axiosInstance, fetchedTask)
+  };
+
+  const handleStatusChange = (taskId, newStatus) => {
+    updateTaskStatus(axiosInstance, taskId, newStatus);
   };
 
   const handleViewTask = (id) => {
@@ -86,7 +92,17 @@ export const Task = () => {
         </div>
 
         <div className="rounded-full">
-          {tasks.map((task) => (
+          {tasks
+            .sort((a, b) => {
+              // Sort by tag, then by title
+              const tagA = a.tag || '';
+              const tagB = b.tag || '';
+              if (tagA !== tagB) {
+                return tagA.localeCompare(tagB);
+              }
+              return (a.title || '').localeCompare(b.title || '');
+            })
+            .map((task) => (
             <div key={task.id} className="relative mb-1">
 
               {/* Task row */}
@@ -99,18 +115,26 @@ export const Task = () => {
                 />
                 <Reveal color="gray" className="flex-1">
                   <span className={`inline-flex gap-2 ${task.ticked ? "line-through text-slate-400" : ""}`}>
-                    <div className="flex items-center gap-2 overflow-hidden text-md">
+                    <div className="flex items-center gap-2 text-md">
                       {task.tag && (
                         <span className="px-2 py-0.5 rounded-full border border-[#ff4500] text-sm font-bold whitespace-nowrap">
                           {task.tag}
                         </span>
                       )}
-                      <p className="truncate">
+                      <p className="truncate flex-1">
                         {task.title || "Untitled Task"}
                       </p>
+                      <StatusSelector
+                        value={task.status || 'not-started'}
+                        onChange={(newStatus) => handleStatusChange(task.id, newStatus)}
+                        size="sm"
+                        showLabel={false}
+                        className="w-28 flex-shrink-0"
+                      />
                     </div>
                   </span>
                 </Reveal>
+                
                 <button className="text-slate-500 font-bold text-sm ml-auto">
                   <TaskSetting
                     handleDelete={handleDeleteTask}
