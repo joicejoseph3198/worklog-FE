@@ -89,4 +89,22 @@ export const useTaskStore = create((set, get) => ({
             console.error("Failed to fetch task", err);
         }
     },
+
+    copyTasksFromDate: async (axiosInstance, sourceDate, targetDate) => {
+        try {
+            const response = await axiosInstance.post("/task/copy", {
+                source_date: sourceDate,
+                target_date: targetDate,
+            });
+            
+            // Refresh tasks for the target date
+            const { fetchTasks } = get();
+            await fetchTasks(axiosInstance, targetDate);
+            
+            return response.data;
+        } catch (err) {
+            console.error("Failed to copy tasks", err);
+            throw err;
+        }
+    },
 }));
