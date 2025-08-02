@@ -1,15 +1,49 @@
 import { UserButton } from '@clerk/clerk-react';
 import React, { useState } from 'react'
 import { Reveal } from '../util/Reveal';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
 export const Header = () => {
     const navigate = useNavigate();
-    const parsedDate = new Date();
+    const { dateParam } = useParams();
+    
+    // Get current date (either from URL param or today)
+    const parsedDate = dateParam ? new Date(dateParam) : new Date();
     const year = parsedDate.getFullYear();
     const month = String(parsedDate.getMonth() + 1).padStart(2, "0");
     const day = String(parsedDate.getDate()).padStart(2, "0");
     const formattedDate = `${year}-${month}-${day}`;
+
+    // Navigation functions
+    const goToPreviousDay = () => {
+        const previousDate = new Date(parsedDate);
+        previousDate.setDate(previousDate.getDate() - 1);
+        const prevYear = previousDate.getFullYear();
+        const prevMonth = String(previousDate.getMonth() + 1).padStart(2, "0");
+        const prevDay = String(previousDate.getDate()).padStart(2, "0");
+        const prevFormattedDate = `${prevYear}-${prevMonth}-${prevDay}`;
+        navigate(`/${prevFormattedDate}`);
+    };
+
+    const goToNextDay = () => {
+        const nextDate = new Date(parsedDate);
+        nextDate.setDate(nextDate.getDate() + 1);
+        const nextYear = nextDate.getFullYear();
+        const nextMonth = String(nextDate.getMonth() + 1).padStart(2, "0");
+        const nextDay = String(nextDate.getDate()).padStart(2, "0");
+        const nextFormattedDate = `${nextYear}-${nextMonth}-${nextDay}`;
+        navigate(`/${nextFormattedDate}`);
+    };
+
+    const goToToday = () => {
+        const today = new Date();
+        const todayYear = today.getFullYear();
+        const todayMonth = String(today.getMonth() + 1).padStart(2, "0");
+        const todayDay = String(today.getDate()).padStart(2, "0");
+        const todayFormattedDate = `${todayYear}-${todayMonth}-${todayDay}`;
+        navigate(`/${todayFormattedDate}`);
+    };
+
     return (
         <navbar className="flex gap-10 max-w-[screen] justify-between text-white drop-shadow">
             <div className="flex items-center">
@@ -19,6 +53,34 @@ export const Header = () => {
                     className="p-4 text-3xl font-[NeueBit] hover:cursor-pointer">worklog(s).</button>
                 </Reveal>
             </div>
+            
+            {/* Date Navigation */}
+            <div className="flex items-center gap-4">
+                <button 
+                    onClick={goToPreviousDay}
+                    className="text-md font-bold hover:cursor-pointer hover:text-black px-3 py-1 rounded-lg hover:bg-white/10"
+                    title="Previous Day"
+                >
+                    ← Previous
+                </button>
+                
+                <button 
+                    onClick={goToToday}
+                    className="text-md font-bold hover:cursor-pointer hover:text-black px-3 py-1 rounded-lg hover:bg-white/10"
+                    title="Today"
+                >
+                    Today
+                </button>
+                
+                <button 
+                    onClick={goToNextDay}
+                    className="text-md font-bold hover:cursor-pointer hover:text-black px-3 py-1 rounded-lg hover:bg-white/10"
+                    title="Next Day"
+                >
+                    Next →
+                </button>
+            </div>
+
             <div className="p-6 flex items-center font-bold gap-5">
                 <div className="flex gap-2">
                     <button 
