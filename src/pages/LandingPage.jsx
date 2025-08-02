@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router";
 import { Reveal } from "../util/Reveal";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
-import bannerImage from '../assets/images/worlog(s)-banner-image.png';
+import bannerImage from '../assets/images/worklog(s)-banner-image.png';
 
 export const LandingPage = () => {
     const parsedDate = new Date();
@@ -17,7 +17,7 @@ export const LandingPage = () => {
             <div className="bg-[#ff6400] p-2 overflow-x-scroll">
                 <nav className="text-white flex justify-between items-center font-bold p-2 gap-2">
                     <p className="cursor-none text-sm text-slate-100">
-                        beta release v1.0
+                        beta release v1.1
                     </p>
                     <Reveal color="white">
                         <SignedOut>
