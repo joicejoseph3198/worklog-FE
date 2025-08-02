@@ -20,7 +20,7 @@ export const StatusSelector = ({
 
     return (
         <div className={`relative ${className}`}>
-            <span className={`px-2 py-1 rounded-full border text-sm font-bold whitespace-nowrap text-white ${selectedStatus?.color || 'bg-gray-500'} border-${selectedStatus?.color?.replace('bg-', '') || 'gray-500'}`}>
+            <span className={`px-4 py-1 rounded-full text-sm font-bold whitespace-nowrap text-white ${selectedStatus?.color || 'bg-gray-500'}`}>
                 {selectedStatus?.label || 'Not Started'}
             </span>
             

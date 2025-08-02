@@ -50,18 +50,19 @@ export const Header = () => {
                 <Reveal color="white">
                     <button 
                     onClick={()=> navigate("/")}
-                    className="p-4 text-3xl font-[NeueBit] hover:cursor-pointer">worklog(s).</button>
+                    title="Home Page"
+                    className="p-4 text-3xl font-[NeueBit] hover:cursor-pointer hover:bg-white/10">worklog(s).</button>
                 </Reveal>
             </div>
             
             {/* Date Navigation */}
-            <div className="flex items-center gap-4">
+            <div className="flex absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 gap-4">
                 <button 
                     onClick={goToPreviousDay}
                     className="text-md font-bold hover:cursor-pointer hover:text-black px-3 py-1 rounded-lg hover:bg-white/10"
                     title="Previous Day"
                 >
-                    ← Previous
+                    ← previous
                 </button>
                 
                 <button 
@@ -69,7 +70,7 @@ export const Header = () => {
                     className="text-md font-bold hover:cursor-pointer hover:text-black px-3 py-1 rounded-lg hover:bg-white/10"
                     title="Today"
                 >
-                    Today
+                    today
                 </button>
                 
                 <button 
@@ -77,7 +78,7 @@ export const Header = () => {
                     className="text-md font-bold hover:cursor-pointer hover:text-black px-3 py-1 rounded-lg hover:bg-white/10"
                     title="Next Day"
                 >
-                    Next →
+                    next →
                 </button>
             </div>
 
@@ -85,14 +86,16 @@ export const Header = () => {
                 <div className="flex gap-2">
                     <button 
                     onClick={()=> navigate(`/${formattedDate}`)}
-                    className="text-md font-bold  hover:cursor-pointer hover:text-black">
+                    title="Present Day Worklog"
+                    className="text-md font-bold  hover:cursor-pointer hover:text-black hover:bg-white/10">
                         current worklog{" "}
                     </button>
                 </div>
                 <div className="flex gap-2">
                     <button
                     onClick={()=> navigate("/calender")} 
-                    className="text-md font-bold  hover:cursor-pointer hover:text-black">
+                    title="Navigate To A Different Worklog"
+                    className="text-md font-bold  hover:cursor-pointer hover:text-black hover:bg-white/10">
                         calender-view
                     </button>
                 </div>

@@ -9,6 +9,7 @@ export const Schedule = () => {
   const fetchSchedule = useScheduledStore((store) => store.fetchSchedule)
   const slots = useScheduledStore((store)=> store.slots)
   const axiosInstance = useAxios();
+  const [isSaving, setIsSaving] = useState(false);
 
   const { dateParam } = useParams();
   // fallback to today's date if param is missing or invalid
@@ -49,12 +50,18 @@ export const Schedule = () => {
     setScheduleData(updatedData);
   };
 
-  const handleSave = () => {
-    console.log(scheduleData)
-    const filteredData = scheduleData
+  const handleSave = async () => {
+    setIsSaving(true);   
+    try {
+      const filteredData = scheduleData
     .map((entry, hour) => ({ hour, entry }))
     .filter(item => item?.entry && item.entry?.trim() !== "");
-    saveSchedule(axiosInstance, filteredData, formattedDate)
+    await saveSchedule(axiosInstance, filteredData, formattedDate);
+    } catch (error) {
+      console.warn("Failed to save schedule: " + error.message);
+    } finally {
+      setIsSaving(false);;
+    }
   }
 
   return (
@@ -64,10 +71,11 @@ export const Schedule = () => {
           <h2 className="text-3xl mb-2 font-[NeueBit]">Schedule</h2>
         </Reveal>
         <button
-          className="font-bold hover:cursor-pointer text-[#ff4500]"
           onClick={handleSave}
+          disabled={isSaving}
+          className="font-bold hover:cursor-pointer text-[#ff4500] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-black/10 p-1 rounded-md"
         >
-          Save 
+          {isSaving ? "Saving..." : "Save"}
         </button>
       </div>
 

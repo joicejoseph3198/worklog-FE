@@ -92,9 +92,9 @@ export const Task = () => {
       await copyTasksFromDate(axiosInstance, sourceDate, formattedDate);
       setShowCopyModal(false);
       setSourceDate("");
-      alert("Tasks copied successfully!");
+      console.log("Tasks copied successfully!");
     } catch (error) {
-      alert("Failed to copy tasks: " + error.message);
+      console.warn("Failed to copy tasks: " + error.message);
     } finally {
       setIsCopying(false);
     }
@@ -110,13 +110,13 @@ export const Task = () => {
           <div className="flex gap-6">
             <button
               onClick={() => setShowCopyModal(true)}
-              className="font-bold hover:cursor-pointer text-[#ff4500]"
+              className="font-bold hover:cursor-pointer text-[#ff4500] hover:bg-black/10 p-1 rounded-md"
             >
-              📋 Copy Tasks
+              Copy Tasks
             </button>
             <button
               onClick={handleAddTask}
-              className="font-bold hover:cursor-pointer text-[#ff4500]"
+              className="font-bold hover:cursor-pointer text-[#ff4500] hover:bg-black/10 p-1 rounded-md"
             >
               + Add Task
             </button>
@@ -147,6 +147,13 @@ export const Task = () => {
                 />
                 <Reveal color="gray" className="flex-1">
                   <span className={`inline-flex gap-2 ${task.ticked ? "line-through text-slate-400" : ""}`}>
+                  <StatusSelector
+                        value={task.status || 'not-started'}
+                        onChange={(newStatus) => handleStatusChange(task.id, newStatus)}
+                        size="sm"
+                        showLabel={false}
+                        className="w-28 rounded-full flex-shrink-0"
+                      />
                     <div className="flex items-center gap-2 text-md">
                       {task.tag && (
                         <span className="px-2 py-0.5 rounded-full border border-[#ff4500] text-sm font-bold whitespace-nowrap">
@@ -156,13 +163,7 @@ export const Task = () => {
                       <p className="truncate flex-1">
                         {task.title || "Untitled Task"}
                       </p>
-                      <StatusSelector
-                        value={task.status || 'not-started'}
-                        onChange={(newStatus) => handleStatusChange(task.id, newStatus)}
-                        size="sm"
-                        showLabel={false}
-                        className="w-28 flex-shrink-0"
-                      />
+                      
                     </div>
                   </span>
                 </Reveal>
@@ -185,9 +186,9 @@ export const Task = () => {
       {showCopyModal && (
         <div className="fixed inset-0 bg-black/10 backdrop-blur-sm flex flex-row justify-center items-center z-50">
           <div className="flex flex-col justify-center bg-white w-full lg:w-1/3 rounded-md border-2 border-slate-500 mx-2 p-2 lg:p-5 text-slate-700">
-            <h3 className="text-3xl text-black pb-4 font-[NeueBit]">Copy Tasks</h3>
+            <h3 className="text-3xl text-black pb-4 font-[NeueBit]">copy tasks</h3>
             <p className="text-sm text-gray-600 mb-4">
-              Enter the date (YYYY-MM-DD) to copy tasks from:
+              Enter the date (dd-mm-yyyy) to copy tasks from:
             </p>
             <input
               type="date"
@@ -200,7 +201,7 @@ export const Task = () => {
               <button
                 onClick={handleCopyTasks}
                 disabled={isCopying}
-                className="bg-[#ff4500] hover:bg-[#ff4500]/70 text-white px-4 py-2 rounded-md font-bold disabled:opacity-50"
+                className="bg-[#ff4500] hover:bg-[#ff4500]/70 text-white px-4 py-2 font-bold disabled:opacity-50 rounded-full -mr-3"
               >
                 {isCopying ? "Copying..." : "Copy Tasks"}
               </button>
@@ -209,7 +210,7 @@ export const Task = () => {
                   setShowCopyModal(false);
                   setSourceDate("");
                 }}
-                className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md font-bold"
+                className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-full -mr-3 font-bold"
               >
                 Cancel
               </button>

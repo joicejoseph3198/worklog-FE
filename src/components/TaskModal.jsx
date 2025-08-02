@@ -100,7 +100,7 @@ export const TaskModal = ({ modalHeading }) => {
           {modalHeading === "edit details" && (
             <Button buttonText="Update" color="white" onClickHandler={handleUpdate} />
           )}
-          <Button buttonText="Cancel" color="white" onClickHandler={hideModal} />
+          <Button buttonText="Cancel" color="gray" onClickHandler={hideModal} />
         </div>
       </div>
     </div>

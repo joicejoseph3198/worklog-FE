@@ -19,7 +19,6 @@ export const Notes = () => {
   const month = String(parsedDate.getMonth() + 1).padStart(2, "0");
   const day = String(parsedDate.getDate()).padStart(2, "0");
   const formattedDate = `${year}-${month}-${day}`;
-  console.log("formatted day in notes ", formattedDate)
 
   // State declarations
   const [bodyInput, setBodyInput] = useState("");
@@ -58,7 +57,7 @@ export const Notes = () => {
         <button
           onClick={handleSave}
           disabled={isSaving}
-          className="font-bold hover:cursor-pointer text-[#ff4500] disabled:opacity-50 disabled:cursor-not-allowed"
+          className="font-bold hover:cursor-pointer text-[#ff4500] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-black/10 p-1 rounded-md"
         >
           {isSaving ? "Saving..." : "Save"}
         </button>
