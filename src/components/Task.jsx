@@ -54,12 +54,12 @@ export const Task = () => {
     changeTag(fetchedTask.tag);
     changeTitle(fetchedTask.title);
     changeDescription(fetchedTask.description);
-    setModalHeading("view details")
+    setModalHeading("View Details")
     showModal();
   };
 
   const handleAddTask = () => {
-    setModalHeading("add task")
+    setModalHeading("Add Task")
     showModal()
   }
 
@@ -73,7 +73,7 @@ export const Task = () => {
     changeTitle(fetchedTask.title);
     changeDescription(fetchedTask.description);
     setCurrentTaskId(id)
-    setModalHeading("edit details")
+    setModalHeading("Edit Details")
     showModal();
   };
 
@@ -125,7 +125,7 @@ export const Task = () => {
           </div>
         </div>
 
-        <div className="rounded-full">
+        <div className="space-y-2">
           {tasks
             .sort((a, b) => {
               // Sort by tag, then by title
@@ -137,40 +137,49 @@ export const Task = () => {
               return (a.title || '').localeCompare(b.title || '');
             })
             .map((task) => (
-            <div key={task.id} className="relative mb-1">
+            <div key={task.id} className="relative">
 
               {/* Task row */}
-              <div className="flex items-center bg-gray-50 p-3 rounded">
+              <div className="flex items-center bg-[var(--worklog-text-dark)]/50 backdrop-blur-sm hover:bg-[var(--worklog-text-dark)]/70 p-4 rounded-lg border border-[var(--worklog-text-medium)]/20 transition-all duration-200">
                 <input
                   type="checkbox"
                   checked={task.ticked}
                   onChange={() => toggleTask(task.id)}
-                  className="mr-2 w-4 h-4 accent-black"
+                  className="mr-3 w-4 h-4 accent-[var(--worklog-brand-green)]"
                 />
                 <Reveal color="gray" className="flex-1">
-                  <span className={`inline-flex gap-2 ${task.ticked ? "line-through text-slate-400" : ""}`}>
-                  <StatusSelector
-                        value={task.status || 'not-started'}
-                        onChange={(newStatus) => handleStatusChange(task.id, newStatus)}
-                        size="sm"
-                        showLabel={false}
-                        className="w-28 rounded-full flex-shrink-0"
-                      />
-                    <div className="flex items-center gap-2 text-md">
+                  <div className={`flex items-center gap-3 ${task.ticked ? "line-through text-[var(--worklog-text-medium)]" : ""}`}>
+                    <div className="flex items-center gap-2 flex-1 min-w-0">
                       {task.tag && (
-                        <span className="px-2 py-0.5 rounded-full border border-[#ff4500] text-sm font-bold whitespace-nowrap">
+                        <span className="px-2 py-1 rounded-full border border-[#ff4500] text-xs font-semibold whitespace-nowrap flex-shrink-0">
                           {task.tag}
                         </span>
                       )}
-                      <p className="truncate flex-1">
+                      <p className="truncate text-[var(--worklog-text-light)] font-medium">
                         {task.title || "Untitled Task"}
                       </p>
-                      
                     </div>
-                  </span>
+                    <span className={`text-sm font-semibold flex-shrink-0 px-2 py-1 ${
+                      task.status === 'not-started' ? 'text-[var(--worklog-text-medium)]' :
+                      task.status === 'initiated' ? 'text-purple-500' :
+                      task.status === 'in-progress' ? 'text-blue-500' :
+                      task.status === 'blocked' ? 'text-red-500' :
+                      task.status === 'done' ? 'text-green-500' :
+                      task.status === 'rollover' ? 'text-orange-500' :
+                      'text-[var(--worklog-text-medium)]'
+                    }`}>
+                      {task.status === 'not-started' ? 'Not Started' :
+                       task.status === 'initiated' ? 'Initiated' :
+                       task.status === 'in-progress' ? 'In Progress' :
+                       task.status === 'blocked' ? 'Blocked' :
+                       task.status === 'done' ? 'Done' :
+                       task.status === 'rollover' ? 'Rollover' :
+                       'Not Started'}
+                    </span>
+                  </div>
                 </Reveal>
                 
-                <button className="text-slate-500 font-bold text-sm ml-auto">
+                <button className="text-[var(--worklog-text-medium)] hover:text-[var(--worklog-text-light)] font-semibold text-sm ml-3 flex-shrink-0">
                   <TaskSetting
                     handleDelete={handleDeleteTask}
                     handleView={handleViewTask}
@@ -188,7 +197,7 @@ export const Task = () => {
       {showCopyModal && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex flex-row justify-center items-center z-50">
           <div className="flex flex-col justify-center bg-[var(--worklog-text-dark)] w-full lg:w-1/3 rounded-md border-1 border-[var(--worklog-text-medium)]/30 mx-2 p-2 lg:p-5 text-slate-700">
-            <h3 className="text-xl text-[var(--worklog-text-light)]  pb-4 font-[NeueBit]">Copy Tasks</h3>
+            <h3 className="text-xl text-[var(--worklog-brand-green)]  pb-4">Copy Tasks</h3>
             <p className="text-sm text-[var(--worklog-text-light)] mb-4">
               Enter the date (dd-mm-yyyy) to copy tasks from:
             </p>

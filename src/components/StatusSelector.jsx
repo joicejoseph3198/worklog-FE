@@ -18,9 +18,21 @@ export const StatusSelector = ({
 }) => {
     const selectedStatus = STATUS_OPTIONS.find(option => option.value === value);
 
+    const getStatusColor = (status) => {
+        switch (status) {
+            case 'not-started': return 'text-[var(--worklog-text-medium)]';
+            case 'initiated': return 'text-purple-500';
+            case 'in-progress': return 'text-blue-500';
+            case 'blocked': return 'text-red-500';
+            case 'done': return 'text-green-500';
+            case 'rollover': return 'text-orange-500';
+            default: return 'text-[var(--worklog-text-medium)]';
+        }
+    };
+
     return (
         <div className={`relative ${className}`}>
-            <span className={`px-4 py-1 rounded-full text-sm font-bold whitespace-nowrap text-white ${selectedStatus?.color || 'bg-gray-500'}`}>
+            <span className={`px-4 py-1 text-sm font-semibold whitespace-nowrap ${getStatusColor(value)}`}>
                 {selectedStatus?.label || 'Not Started'}
             </span>
             
@@ -42,18 +54,29 @@ export const StatusSelector = ({
 export const StatusIndicator = ({ status, size = 'md', showLabel = false }) => {
     const statusOption = STATUS_OPTIONS.find(option => option.value === status) || STATUS_OPTIONS[0];
     
+    const getStatusColor = (status) => {
+        switch (status) {
+            case 'not-started': return 'text-[var(--worklog-text-medium)]';
+            case 'initiated': return 'text-purple-500';
+            case 'in-progress': return 'text-blue-500';
+            case 'blocked': return 'text-red-500';
+            case 'done': return 'text-green-500';
+            case 'rollover': return 'text-orange-500';
+            default: return 'text-[var(--worklog-text-medium)]';
+        }
+    };
+
     const sizeClasses = {
-        sm: 'w-2 h-2',
-        md: 'w-3 h-3',
-        lg: 'w-4 h-4'
+        sm: 'text-xs',
+        md: 'text-sm',
+        lg: 'text-base'
     };
 
     return (
         <div className="flex items-center gap-2">
-            <div className={`${sizeClasses[size]} rounded-full ${statusOption.color}`}></div>
-            {showLabel && (
-                <span className="text-xs text-gray-600">{statusOption.label}</span>
-            )}
+            <span className={`${sizeClasses[size]} font-semibold ${getStatusColor(status)}`}>
+                {statusOption.label}
+            </span>
         </div>
     );
 }; 
