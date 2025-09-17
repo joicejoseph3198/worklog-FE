@@ -13,11 +13,11 @@ export const DailyWorkLogSpread = () => {
 
 
   return (
-    <div className="overflow-x-scroll px-3 pb-3 flex flex-col justify-center w-screen bg-[#ff6400]">
+    <div className="overflow-x-scroll px-3 pb-3 flex flex-col justify-center w-screen bg-black/80 ">
       <Header/>
       <DayDetailsRow />
       {/* Main spread content container */}
-      <div className={`relative bg-white rounded-b-xl `}>
+      <div className={`relative bg-[var(--worklog-dark-bg)]  rounded-b-xl `}>
         {/* Content to blur */}
         <div
           className={`
@@ -27,7 +27,7 @@ export const DailyWorkLogSpread = () => {
                 text-black
                 overflow-x-scroll
                 min-w-[1200px]
-                divide-x divide-gray-300
+                divide-x divide-[var(--worklog-text-medium)]/30
                 transition-all
                 ${modalFlag ? "blur-sm pointer-events-none" : ""}
               `}

@@ -10,6 +10,29 @@
   src: url(./assets/fonts/PPMori-Regular.otf)format('opentype');
 }
 
+
+/* -----------------------------------
+   Worklog Theme Variables
+----------------------------------- */
+:root {
+  /* Brand / Role Colors */
+  --worklog-brand-green:  #73DC8C;
+  --worklog-brand-blue:   #5B9BD5;
+  --worklog-brand-purple: #A855F7;
+  --worklog-brand-pink:   #E879F9;
+
+  /* Dark Theme */
+  --worklog-dark-bg:      #1A1A1A;
+  --worklog-card-bg:      #2A2A2A;
+  --worklog-card-hover:   #333333;
+
+  /* Text */
+  --worklog-text-white:   #FFFFFF;
+  --worklog-text-light:   #A3A3A3;
+  --worklog-text-medium:  #6B7280;
+}
+
+
 body {
   font-size: 16px;
   display: flex;

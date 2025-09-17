@@ -52,18 +52,19 @@ export const Notes = () => {
     <div className="flex-shrink-0 w-1/4 h-full p-4 mb-4 flex flex-col">
       <div className="flex justify-between items-center mb-4">
         <Reveal>
-          <h2 className="text-3xl mb-2 font-[NeueBit]">Notes</h2>
+          <h2 className="text-md mb-2  text-[var(--worklog-text-light)]">Notes</h2>
         </Reveal>
         <button
           onClick={handleSave}
           disabled={isSaving}
-          className="font-bold hover:cursor-pointer text-[#ff4500] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-black/10 p-1 rounded-md"
+          className="font-bold hover:cursor-pointer px-4 py-2 bg-[var(--worklog-brand-green)] disabled:opacity-50 disabled:cursor-not-allowed 
+          hover:bg-[var(--worklog-card-hover)] hover:text-[var(--worklog-brand-green)] p-1 rounded-md text-sm"
         >
           {isSaving ? "Saving..." : "Save"}
         </button>
       </div>
       <textarea
-        className="w-full flex-1 py-1 px-4 text-[16px] resize-none outline-none rounded-lg"
+        className="w-full flex-1 py-2 px-4 text-[16px] resize-none outline-none rounded-lg text-[var(--worklog-text-white)]"
         spellCheck={false}
         value={bodyInput}
         onChange={(e) => setBodyInput(e.target.value)}

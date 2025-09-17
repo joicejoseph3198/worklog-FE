@@ -105,18 +105,20 @@ export const Task = () => {
       <div>
         <div className="flex justify-between items-center mb-4">
           <Reveal>
-            <h2 className="text-3xl mb-2 font-[NeueBit]">Tasks</h2>
+            <h2 className="text-md mb-2 text-[var(--worklog-text-light)] ">Tasks</h2>
           </Reveal>
           <div className="flex gap-6">
             <button
               onClick={() => setShowCopyModal(true)}
-              className="font-bold hover:cursor-pointer text-[#ff4500] hover:bg-black/10 p-1 rounded-md"
+              className="font-bold hover:cursor-pointer px-4 bg-[var(--worklog-brand-green)] p-1 rounded-md text-xs
+              hover:bg-[var(--worklog-card-hover)] hover:text-[var(--worklog-brand-green)]"
             >
               Copy Tasks
             </button>
             <button
               onClick={handleAddTask}
-              className="font-bold hover:cursor-pointer text-[#ff4500] hover:bg-black/10 p-1 rounded-md"
+              className="font-bold hover:cursor-pointer px-4 py-2 bg-[var(--worklog-brand-green)] p-1 rounded-md text-xs
+              hover:bg-[var(--worklog-card-hover)] hover:text-[var(--worklog-brand-green)]"
             >
               + Add Task
             </button>
@@ -184,24 +186,24 @@ export const Task = () => {
 
       {/* Copy Tasks Modal */}
       {showCopyModal && (
-        <div className="fixed inset-0 bg-black/10 backdrop-blur-sm flex flex-row justify-center items-center z-50">
-          <div className="flex flex-col justify-center bg-white w-full lg:w-1/3 rounded-md border-2 border-slate-500 mx-2 p-2 lg:p-5 text-slate-700">
-            <h3 className="text-3xl text-black pb-4 font-[NeueBit]">copy tasks</h3>
-            <p className="text-sm text-gray-600 mb-4">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex flex-row justify-center items-center z-50">
+          <div className="flex flex-col justify-center bg-[var(--worklog-text-dark)] w-full lg:w-1/3 rounded-md border-1 border-[var(--worklog-text-medium)]/30 mx-2 p-2 lg:p-5 text-slate-700">
+            <h3 className="text-xl text-[var(--worklog-text-light)]  pb-4 font-[NeueBit]">Copy Tasks</h3>
+            <p className="text-sm text-[var(--worklog-text-light)] mb-4">
               Enter the date (dd-mm-yyyy) to copy tasks from:
             </p>
             <input
               type="date"
               value={sourceDate}
               onChange={(e) => setSourceDate(e.target.value)}
-              className="bg-transparent text-slate-600 w-full focus:outline-none px-6 py-2 
-              text-sm border-slate-700 border-2 rounded-md text-sm font-semibold mb-4"
+              className="bg-transparent text-[var(--worklog-text-light)] w-full focus:outline-none px-6 py-2 
+              text-sm border-[var(--worklog-text-medium)]/30 border-1 rounded-md text-sm font-semibold mb-4"
             />
             <div className="flex flex-row justify-end gap-5 py-5 px-2">
               <button
                 onClick={handleCopyTasks}
                 disabled={isCopying}
-                className="bg-[#ff4500] hover:bg-[#ff4500]/70 text-white px-4 py-2 font-bold disabled:opacity-50 rounded-full -mr-3"
+                className="bg-[var(--worklog-brand-green)] hover:bg-[var(--worklog-text-dark)] text-black hover:text-[var(--worklog-brand-green)] border-[var(--worklog-text-medium)]/30 border-1 flex flex-row items-center justify-center px-4 font-['Mori'] font-bold rounded-full text-sm lg:text-md py-5 h-[38px] -mr-3 disabled:opacity-50"
               >
                 {isCopying ? "Copying..." : "Copy Tasks"}
               </button>
@@ -210,7 +212,7 @@ export const Task = () => {
                   setShowCopyModal(false);
                   setSourceDate("");
                 }}
-                className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-full -mr-3 font-bold"
+                className="bg-[var(--worklog-text-medium)] hover:bg-[var(--worklog-text-dark)] text-white border-[var(--worklog-text-medium)] border-1 flex flex-row items-center justify-center px-4 font-['Mori'] font-bold rounded-full text-sm lg:text-md py-5 h-[38px] -mr-3"
               >
                 Cancel
               </button>

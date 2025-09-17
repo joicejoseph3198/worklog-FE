@@ -14,9 +14,9 @@ export const LandingPage = () => {
     const navigate = useNavigate();
     return (
         <div>
-            <div className="bg-[#ff6400] p-2 overflow-x-scroll">
+            <div className="bg-[var(--worklog-card-bg)] p-2 overflow-x-scroll">
                 <nav className="text-white flex justify-between items-center font-bold p-2 gap-2">
-                    <p className="cursor-none text-sm text-slate-100">
+                    <p className="cursor-none text-sm text-[var(--worklog-brand-green)]">
                         beta release v1.1
                     </p>
                     <Reveal color="white">
@@ -26,7 +26,7 @@ export const LandingPage = () => {
                         <SignedIn>
                             <button
                                 onClick={() => navigate(`/${formattedDate}`)}
-                                className="hover:cursor-pointer text-xl hover:text-slate-200 font-bold"
+                                className="hover:cursor-pointer text-[var(--worklog-brand-green)] text-xl hover:text-slate-200 hover:bg-[var(--worklog-card-hover)] p-1 rounded-md font-bold"
                             >
                                 get started.
                             </button>
@@ -35,8 +35,8 @@ export const LandingPage = () => {
                 </nav>
             </div>
             {/*HERO BANNER*/}
-            <div className="flex items-center justify-center w-screen h-[80vh] lg:h-[50vh] bg-[#ff6400] ">
-                <div className="flex flex-col items-center text-white m-auto">
+            <div className="flex items-center justify-center w-screen h-[80vh] lg:h-[50vh] bg-[var(--worklog-card-bg)]">
+                <div className="flex flex-col items-center text-[var(--worklog-brand-green)] m-auto">
                     <Reveal color="white">
                         <h1 className="text-8xl font-[NeueBit]"> worklog(s).</h1>
                     </Reveal>
@@ -50,7 +50,7 @@ export const LandingPage = () => {
                     {/* <h1 className='text-xl m-auto'> Simple. Minimal. Organized</h1> */}
                 </div>
             </div>
-            <div className="flex items-center justify-center bg-[#ff6400] px-10 h-auto">
+            <div className="flex items-center justify-center bg-[var(--worklog-card-bg)]  px-10 h-auto">
                 <img
                     src={bannerImage}
                     alt=""

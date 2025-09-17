@@ -27,17 +27,17 @@ export const DayDetailsRow = () => {
   const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
 
   return (
-    <div className="bg-white rounded-t-xl w-full p-4 flex flex-row items-center justify-between
-     overflow-x-scroll min-w-[1200px] border-b border-gray-300">
-      <div className="text-3xl mb-2 font-[NeueBit] text-[#ff4500]">{formattedDate}</div>
+    <div className="bg-[var(--worklog-dark-bg)]  rounded-t-xl w-full p-4 flex flex-row items-center justify-between
+     overflow-x-scroll min-w-[1200px] border-b border-[var(--worklog-text-medium)]/30">
+      <div className="text-lg mb-2 text-[var(--worklog-text-white)]">{formattedDate}</div>
       <Reveal>
         <div className="flex space-x-2">
           {days.map((d, index) => (
             <div
               key={index}
               className={`
-                w-8 h-8 flex items-center justify-center rounded-full font-[NeueBit] 
-                ${index === dayIndex ? 'border-2 border-[#ff4500] text-black-500 font-bold' : 'text-gray-500'}
+                w-8 h-8 text-md flex items-center justify-center rounded-full font-[NeueBit] 
+                ${index === dayIndex ? 'border-2 border-[var(--worklog-brand-green)] text-[var(--worklog-brand-green)] font-bold' : 'text-gray-500'}
               `}
             >
               {d}

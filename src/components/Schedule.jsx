@@ -68,12 +68,13 @@ export const Schedule = () => {
     <div className="w-1/2 p-4">
       <div className="flex items-center justify-between mb-4">
         <Reveal>
-          <h2 className="text-3xl mb-2 font-[NeueBit]">Schedule</h2>
+          <h2 className="text-md mb-2 text-[var(--worklog-text-light)]">Schedule</h2>
         </Reveal>
         <button
           onClick={handleSave}
           disabled={isSaving}
-          className="font-bold hover:cursor-pointer text-[#ff4500] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-black/10 p-1 rounded-md"
+          className="font-bold hover:cursor-pointer px-4 py-2 bg-[var(--worklog-brand-green)] disabled:opacity-50 disabled:cursor-not-allowed p-1 rounded-md text-sm
+          hover:bg-[var(--worklog-card-hover)] hover:text-[var(--worklog-brand-green)]"
         >
           {isSaving ? "Saving..." : "Save"}
         </button>
@@ -84,10 +85,10 @@ export const Schedule = () => {
         {hours.map((hour) => (
 
           <div key={hour} className="flex flex-row items-center mb-1">
-            <span className="w-14 text-[#ff4500] text-sm">
+            <span className="w-14 text-[var(--worklog-text-medium)] text-sm">
               {hour.toString().padStart(2, "0")}:00
             </span>
-            <input type="text" className="flex-1 rounded p-2  ml-2"
+            <input type="text" className="flex-1 rounded p-2 ml-2 text-[var(--worklog-text-white)] hover:bg-[var(--worklog-card-hover)]  focus:outline-[var(--worklog-text-medium)] focus:outline-1 focus:outline-offset-2"
               value={scheduleData[hour]}
               onChange={(e) => handleChange(hour, e.target.value)} />
           </div>

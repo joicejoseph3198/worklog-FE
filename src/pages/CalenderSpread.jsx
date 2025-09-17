@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Header } from "../components/Header";
 import { useNavigate } from "react-router";
+import { Reveal } from "../util/Reveal";
 
 
 export const CalenderSpread = () => {
@@ -58,24 +59,26 @@ export const CalenderSpread = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="bg-[#ff6400] flex flex-col w-screen">
+        <div className="bg-[var(--worklog-card-bg)] flex flex-col w-screen">
             <Header />
             <div
-                className="bg-[white] text-black h-screen rounded-xl mx-3 mb-3 overflow-x-scroll "
+                className="bg-[var(--worklog-dark-bg)] text-black h-screen rounded-xl mx-3 mb-3 overflow-x-scroll "
             >
                 <div className="overflow-x-auto">
                     <div className="min-w-[1600px]">
 
                         {/* Calendar */}
                         <div className="max-w-3/5 mx-auto pt-10">
-                            <div className="flex px-2 mb-6 items-center justify-between border-b pb-5 border-gray-300">
+                            <div className="flex px-2 mb-6 items-center justify-between border-b-1 pb-5 border-[var(--worklog-text-medium)]/30">
                                 <div className="flex gap-10 items-center">
-                                    <h2 className="text-xl font-bold">{"Overview"}</h2>
+                                    <Reveal>
+                                        <h2 className="text-xl text-[var(--worklog-brand-green)]">{"Calender View"}</h2>
+                                    </Reveal>
                                 </div>
                                 <div className="flex gap-10 items-center">
                                     <button
                                         onClick={goToPreviousMonth}
-                                        className="text-3xl text-slate-400 hover:text-black hover:cursor-pointer"
+                                        className="text-2xl text-slate-400 hover:text-white hover:cursor-pointer"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -92,12 +95,15 @@ export const CalenderSpread = () => {
                                             />
                                         </svg>
                                     </button>
-                                    <h2 className="text-4xl font-medium font-[NeueBit]">
-                                        {monthNames[date.getMonth()]}, {date.getFullYear()}
-                                    </h2>
+                                    <Reveal>
+                                        <h2 className="text-xl text-bold text-[var(--worklog-text-light)]">
+                                            {monthNames[date.getMonth()]}, {date.getFullYear()}
+                                        </h2>
+                                    </Reveal>
+                                    
                                     <button
                                         onClick={goToNextMonth}
-                                        className="text-3xl text-slate-400 hover:text-black hover:cursor-pointer"
+                                        className="text-3xl text-slate-400 hover:text-white hover:cursor-pointer"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +127,7 @@ export const CalenderSpread = () => {
                                 {dayNames.map((day) => (
                                     <div
                                         key={day}
-                                        className="text-center text-2xl text-slate-700 font-[NeueBit] py-2"
+                                        className="text-center text-2xl text-[var(--worklog-text-light)] font-[NeueBit] py-2"
                                     >
                                         {day}
                                     </div>
@@ -129,7 +135,7 @@ export const CalenderSpread = () => {
                             </div>
 
                             {/* Calendar grid */}
-                            <div className="grid grid-cols-7 gap-x-2 bg-white p-2 rounded-xl h-full"
+                            <div className="grid grid-cols-7 gap-x-2 bg-[var(--worklog-dark-bg)] p-2 rounded-xl h-full"
                             style={{
                                 backgroundImage: `radial-gradient(circle, rgba(153, 153, 153, 0.52) 1px, transparent 1px)`,
                                 backgroundSize: `20px 20px`,
@@ -148,12 +154,13 @@ export const CalenderSpread = () => {
                                         }}
                                         key={index}
                                         className={`aspect-square flex items-center justify-center relative p-1 ${dayObj.showBox
-                                            ? `border-2 bg-gray-100 rounded-2xl hover:bg-[#ff5400] hover:cursor-pointer`
+                                            ? `border-2 border-[var(--worklog-text-medium)]/30 bg-[var(--worklog-text-dark)]/30 rounded-2xl
+                                             hover:bg-[var(--worklog-brand-green)] hover:cursor-pointer hover:text-black`
                                             : ``
                                             }`}
                                     >
                                         {dayObj.showBox && (
-                                            <span className="text-base font-semibold text-[#ff1000]">
+                                            <span className="text-base font-semibold text-[var(--worklog-text-light)]">
                                                 {dayObj.day}
                                             </span>
                                         )}

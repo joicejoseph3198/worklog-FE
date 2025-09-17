@@ -12,7 +12,7 @@ export const InputTextField = (props) => {
   } = props;
   return (
     <div className="pb-2 w-full text-sm">
-      <h3 className="pb-2 text-2xl font-[NeueBit]">{title}</h3>
+      <h3 className="pb-2 text-2xl font-[NeueBit] text-[var(--worklog-text-light)]">{title}</h3>
       <input
         type="text"
         placeholder={placeholder}
@@ -20,7 +20,7 @@ export const InputTextField = (props) => {
         name={name}
         onChange={onChangeHandler}
         maxLength={maxLength}
-        className="bg-transparent text-slate-600 w-full focus:outline-none px-6 py-2 text-sm font-semibold border-slate-700 border-2 rounded-md"
+        className="bg-transparent text-[var(--worklog-text-light)] w-full focus:outline-none px-6 py-2 text-sm font-semibold border-[var(--worklog-text-medium)]/30 border-2 rounded-md"
       />
     </div>
   );

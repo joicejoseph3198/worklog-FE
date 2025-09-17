@@ -45,13 +45,13 @@ export const Header = () => {
     };
 
     return (
-        <navbar className="flex gap-10 max-w-[screen] justify-between text-white drop-shadow">
+        <navbar className="flex gap-10 max-w-[screen] justify-between text-[var(--worklog-text-light)] drop-shadow">
             <div className="flex items-center">
                 <Reveal color="white">
                     <button 
                     onClick={()=> navigate("/")}
                     title="Home Page"
-                    className="p-4 text-3xl font-[NeueBit] hover:cursor-pointer hover:bg-white/10">worklog(s).</button>
+                    className="p-4 text-2xl font-[NeueBit] hover:cursor-pointer text-[var(--worklog-brand-green)] px-3 py-1 rounded-lg hover:bg-white/10">worklog(s).</button>
                 </Reveal>
             </div>
             
@@ -59,7 +59,7 @@ export const Header = () => {
             <div className="flex absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 gap-4">
                 <button 
                     onClick={goToPreviousDay}
-                    className="text-md font-bold hover:cursor-pointer hover:text-black px-3 py-1 rounded-lg hover:bg-white/10"
+                    className="text-md font-bold hover:cursor-pointer hover:text-[var(--worklog-brand-green)] px-3 py-1 rounded-lg hover:bg-white/10"
                     title="Previous Day"
                 >
                     ← previous
@@ -67,7 +67,7 @@ export const Header = () => {
                 
                 <button 
                     onClick={goToToday}
-                    className="text-md font-bold hover:cursor-pointer hover:text-black px-3 py-1 rounded-lg hover:bg-white/10"
+                    className="text-md font-bold hover:cursor-pointer hover:text-[var(--worklog-brand-green)] px-3 py-1 rounded-lg hover:bg-white/10"
                     title="Today"
                 >
                     today
@@ -75,7 +75,7 @@ export const Header = () => {
                 
                 <button 
                     onClick={goToNextDay}
-                    className="text-md font-bold hover:cursor-pointer hover:text-black px-3 py-1 rounded-lg hover:bg-white/10"
+                    className="text-md font-bold hover:cursor-pointer hover:text-[var(--worklog-brand-green)] px-3 py-1 rounded-lg hover:bg-white/10"
                     title="Next Day"
                 >
                     next →
@@ -87,7 +87,7 @@ export const Header = () => {
                     <button 
                     onClick={()=> navigate(`/${formattedDate}`)}
                     title="Present Day Worklog"
-                    className="text-md font-bold  hover:cursor-pointer hover:text-black hover:bg-white/10">
+                    className="text-md font-bold hover:cursor-pointer hover:text-[var(--worklog-brand-green)] px-3 py-1 rounded-lg hover:bg-white/10">
                         current worklog{" "}
                     </button>
                 </div>
@@ -95,7 +95,7 @@ export const Header = () => {
                     <button
                     onClick={()=> navigate("/calender")} 
                     title="Navigate To A Different Worklog"
-                    className="text-md font-bold  hover:cursor-pointer hover:text-black hover:bg-white/10">
+                    className="text-md font-bold hover:cursor-pointer hover:text-[var(--worklog-brand-green)] px-3 py-1 rounded-lg hover:bg-white/10">
                         calender-view
                     </button>
                 </div>

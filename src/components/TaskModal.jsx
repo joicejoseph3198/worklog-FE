@@ -48,9 +48,9 @@ export const TaskModal = ({ modalHeading }) => {
   }
 
   return (
-    <div className="fixed inset-0 bg-black/10 backdrop-blur-sm flex flex-row justify-center items-center">
-      <div className="flex flex-col justify-center bg-white w-full lg:w-2/5 rounded-md border-2 border-slate-500 mx-2 p-2 lg:p-5 text-slate-700">
-        <h3 className="text-3xl text-black pb-4 font-[NeueBit]">{modalHeading}</h3>
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex flex-row justify-center items-center">
+      <div className="flex flex-col justify-center bg-[var(--worklog-text-dark)] w-full lg:w-2/5 rounded-md border-1 border-[var(--worklog-text-medium)]/30 mx-2 p-2 lg:p-5 text-slate-700">
+        <h3 className="text-xl text-[var(--worklog-text-light)] pb-4">{modalHeading}</h3>
         <div className="flex gap-10 justify-between text-slate-700 pb-4">
           <InputTextField
             title="Tag"
@@ -71,7 +71,7 @@ export const TaskModal = ({ modalHeading }) => {
         {/* Status Selection */}
         <div className="flex gap-10 justify-between text-slate-700 pb-4">
           <div className="flex-1">
-            <h3 className="pb-2 text-2xl font-[NeueBit]">Status</h3>
+            <h3 className="pb-2 text-2xl font-[NeueBit] text-[var(--worklog-text-light)]">Status</h3>
             <StatusSelector
               value={status}
               onChange={setStatus}
@@ -82,7 +82,7 @@ export const TaskModal = ({ modalHeading }) => {
           <div className="flex-1"></div> {/* Spacer */}
         </div>
         
-        <p className="text-2xl font-[NeueBit]">
+        <p className="text-2xl font-[NeueBit] text-[var(--worklog-text-light)]">
           Additonal Details (limit: 500 characters)
         </p>
         <textarea
@@ -90,8 +90,8 @@ export const TaskModal = ({ modalHeading }) => {
           onChange={(e) => changeDescription(e.target.value)}
           placeholder="Enter product description"
           name="productDescription"
-          className="resize-none bg-transparent text-slate-600 w-full h-20 focus:outline-none px-6 py-2 
-          text-sm border-slate-700 border-2 rounded-md text-sm font-semibold"
+          className="resize-none bg-transparent text-[var(--worklog-text-light)] w-full h-20 focus:outline-none px-6 py-2 
+          text-sm border-[var(--worklog-text-medium)]/30 border-1 rounded-md text-sm font-semibold"
         />
         <div className="flex flex-row justify-end gap-5 py-5 px-2">
           {modalHeading === "add task" && (
