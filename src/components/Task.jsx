@@ -149,17 +149,8 @@ export const Task = () => {
                 />
                 <Reveal color="gray" className="flex-1">
                   <div className={`flex items-center gap-3 ${task.ticked ? "line-through text-[var(--worklog-text-medium)]" : ""}`}>
-                    <div className="flex items-center gap-2 flex-1 min-w-0">
-                      {task.tag && (
-                        <span className="px-2 py-1 rounded-full border border-[#ff4500] text-xs font-semibold whitespace-nowrap flex-shrink-0">
-                          {task.tag}
-                        </span>
-                      )}
-                      <p className="truncate text-[var(--worklog-text-light)] font-medium">
-                        {task.title || "Untitled Task"}
-                      </p>
-                    </div>
-                    <span className={`text-sm font-semibold flex-shrink-0 px-2 py-1 ${
+                    {/* Status - Fixed width for consistent spacing */}
+                    <span className={`text-sm font-semibold flex-shrink-0 px-2 py-1 w-24 text-center ${
                       task.status === 'not-started' ? 'text-[var(--worklog-text-medium)]' :
                       task.status === 'initiated' ? 'text-purple-500' :
                       task.status === 'in-progress' ? 'text-blue-500' :
@@ -176,17 +167,31 @@ export const Task = () => {
                        task.status === 'rollover' ? 'Rollover' :
                        'Not Started'}
                     </span>
+                    
+                    {/* Tag */}
+                    {task.tag && (
+                      <span className="px-2 py-1 rounded-full border border-[var(--worklog-brand-green)] bg-[var(--worklog-brand-green)]/10 text-[var(--worklog-brand-green)] text-xs font-semibold whitespace-nowrap flex-shrink-0">
+                        {task.tag}
+                      </span>
+                    )}
+                    
+                    {/* Task Title */}
+                    <p className="truncate text-[var(--worklog-text-light)] font-medium flex-1 min-w-0">
+                      {task.title || "Untitled Task"}
+                    </p>
                   </div>
                 </Reveal>
                 
-                <button className="text-[var(--worklog-text-medium)] hover:text-[var(--worklog-text-light)] font-semibold text-sm ml-3 flex-shrink-0">
-                  <TaskSetting
-                    handleDelete={handleDeleteTask}
-                    handleView={handleViewTask}
-                    handleUpdate={handleEditTask}
-                    id={task.id}
-                  />
-                </button>
+                <div className="ml-auto flex-shrink-0">
+                  <button className="text-[var(--worklog-brand-green)] hover:text-[var(--worklog-text-light)] font-semibold text-sm">
+                    <TaskSetting
+                      handleDelete={handleDeleteTask}
+                      handleView={handleViewTask}
+                      handleUpdate={handleEditTask}
+                      id={task.id}
+                    />
+                  </button>
+                </div>
               </div>
             </div>
           ))}
