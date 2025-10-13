@@ -10,7 +10,7 @@ export const useOverviewStore = create((set, get) => ({
     fetchOverview: async (axiosInstance, month, year) => {
         set({ loading: true, error: null });
         try {
-            const response = await axiosInstance.get(`/task/overview?month=${month}&year=${year}`);
+            const response = await axiosInstance.get(`/monthly/overview?month=${month}&year=${year}`);
             const data = response.data?.data || {};
             set({ 
                 taskDates: data.task || [],

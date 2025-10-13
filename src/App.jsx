@@ -22,10 +22,15 @@ function App() {
   }, []);
   if (isSmallScreen) {
     return (
-      <div className="flex items-center justify-center h-screen w-screen bg-[#ff6400] text-white text-center p-4 z-50 shadow-md">
-        <p className="text-3xl sm:text-4xl font-[NeueBit] p-2">
-          We're working on bringing the best experience to smaller screens. Till then, please use a bigger screen. Thank you for trusting worklog(s).
-        </p>
+      <div className="flex items-center justify-center h-screen w-screen bg-[var(--worklog-dark-bg)] text-center p-4 z-50">
+        <div className="max-w-2xl mx-auto">
+          <h1 className="text-4xl sm:text-5xl font-[NeueBit] text-[var(--worklog-brand-green)] mb-6">
+            worklog(s).
+          </h1>
+          <p className="text-lg sm:text-xl text-[var(--worklog-text-light)] font-semibold leading-relaxed">
+            We're working on bringing the best experience to smaller screens. Till then, please use a bigger screen. Thank you for trusting worklog(s).
+          </p>
+        </div>
       </div>
     )
   }
