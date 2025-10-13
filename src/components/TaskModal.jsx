@@ -22,9 +22,22 @@ export const TaskModal = ({ modalHeading }) => {
   const addTask = useTaskStore((state) => state.addTask)
   const updateTask = useTaskStore((state) => state.updateTask)
   const hideModal = useModalStore((state) => state.hideModal)
+  const tasks = useTaskStore((state) => state.tasks)
 
   // Status state
   const [status, setStatus] = React.useState('not-started');
+
+  // Update status when modal opens for editing
+  React.useEffect(() => {
+    if (modalHeading === "Edit Details" && id) {
+      const currentTask = tasks.find(task => task.id === id);
+      if (currentTask && currentTask.status) {
+        setStatus(currentTask.status);
+      }
+    } else if (modalHeading === "Add Task") {
+      setStatus('not-started');
+    }
+  }, [modalHeading, id, tasks]);
 
   const { dateParam } = useParams();
   // fallback to today's date if param is missing or invalid

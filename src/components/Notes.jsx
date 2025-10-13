@@ -69,7 +69,7 @@ export const Notes = () => {
         value={bodyInput}
         onChange={(e) => setBodyInput(e.target.value)}
         style={{
-          backgroundImage: `radial-gradient(circle, rgba(153, 153, 153, 0.52) 1px, transparent 1px)`,
+          backgroundImage: `radial-gradient(circle, rgba(153, 153, 153, 0.4) 1px, transparent 1px)`,
           backgroundSize: `20px 20px`,
           backgroundPosition: `center`,
         }}
