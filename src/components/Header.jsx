@@ -1,5 +1,5 @@
 import { UserButton } from '@clerk/clerk-react';
-import React, { useState } from 'react'
+import React from 'react'
 import { Reveal } from '../util/Reveal';
 import { useNavigate, useParams } from 'react-router';
 
@@ -97,6 +97,14 @@ export const Header = () => {
                     title="Navigate To A Different Worklog"
                     className="text-md font-bold hover:cursor-pointer hover:text-[var(--worklog-brand-green)] px-3 py-1 rounded-lg hover:bg-white/10">
                         calender-view
+                    </button>
+                </div>
+                <div className="flex gap-2">
+                    <button
+                    onClick={()=> navigate("/brag-document")} 
+                    title="Brag Document - Track Your Achievements"
+                    className="text-md font-bold hover:cursor-pointer hover:text-[var(--worklog-brand-green)] px-3 py-1 rounded-lg hover:bg-white/10">
+                        brag-doc
                     </button>
                 </div>
                 <UserButton className="ml-5" />

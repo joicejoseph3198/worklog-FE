@@ -2,6 +2,10 @@
 import { LandingPage } from "../pages/LandingPage";
 import { DailyWorkLogSpread } from "../pages/DailyWorkLogSpread";
 import { CalenderSpread } from "../pages/CalenderSpread";
+import { BragDocumentSpread } from "../pages/BragDocumentSpread";
+import { GuidelinesPage } from "../pages/brag-document/GuidelinesPage";
+import { SummaryPage } from "../pages/brag-document/SummaryPage";
+import { FormPage } from "../pages/brag-document/FormPage";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { createBrowserRouter } from "react-router";
 import { Transition } from "./Transition";
@@ -28,5 +32,31 @@ export const router = createBrowserRouter([
                 <CalenderSpread />
             </ProtectedRoute>
         ),
+    },
+    {
+        path: "/brag-document",
+        element: (
+            <ProtectedRoute>
+                <BragDocumentSpread />
+            </ProtectedRoute>
+        ),
+        children: [
+            {
+                index: true,
+                element: <GuidelinesPage />
+            },
+            {
+                path: "guidelines",
+                element: <GuidelinesPage />
+            },
+            {
+                path: "summary",
+                element: <SummaryPage />
+            },
+            {
+                path: "form",
+                element: <FormPage />
+            }
+        ]
     },
 ]);
