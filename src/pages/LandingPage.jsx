@@ -45,7 +45,7 @@ export const LandingPage = () => {
                             <h1 className="text-xl font-bold text-center">
                                 {" "}
                                 simple. minimal. organized - digital log for
-                                wrokspace productivity.
+                                workspace productivity.
                             </h1>
                         </Reveal>
                     </div>
