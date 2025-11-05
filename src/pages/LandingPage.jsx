@@ -44,8 +44,8 @@ export const LandingPage = () => {
                         <Reveal color="white">
                             <h1 className="text-xl font-bold text-center">
                                 {" "}
-                                simple. minimal. organized - digital journal for
-                                personal productivity.
+                                simple. minimal. organized - digital log for
+                                wrokspace productivity.
                             </h1>
                         </Reveal>
                     </div>
@@ -54,7 +54,7 @@ export const LandingPage = () => {
                 {/* Right arrow pointing to banner image - positioned near the screenshot */}
                 <div className="absolute bottom-4 right-4 flex flex-col items-center">
                     <span className="text-[var(--worklog-brand-green)] font-bold text-xs mb-1">
-                        **screenshot** (supposed to be obvious, but apparently is not. skill issue. ngmi.)
+                        **screenshot**
                     </span>
                     <svg 
                         className="w-14 h-14 text-[var(--worklog-brand-green)] pointer-events-none"
