@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Reveal } from '../util/Reveal';
 import { QuestionAnswer } from './QuestionAnswer';
+ 
 
 export const BragFormSection = ({ selectedMonth, onMonthChange, onSave, bragData, onQuestionChange }) => {
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleSave = async () => {
+    if (isSaving) return;
+    setIsSaving(true);
+    try {
+      await onSave();
+    } finally {
+      setIsSaving(false);
+    }
+  };
   const monthNames = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
@@ -28,7 +40,7 @@ export const BragFormSection = ({ selectedMonth, onMonthChange, onSave, bragData
     },
     {
       id: 'projects',
-      title: 'Projects',
+      title: 'Projects & Contributions',
       description: 'For each project:\n\nYour role: What you designed, built, or contributed.\n\nImpact: Who benefited, measurable results (speedups, cost savings, adoption, etc.), or qualitative impact (audit readiness, customer success).\n\nFollow-up: Note results after launch.',
       placeholder: 'Project background: We were tasked with coming up with a new brand for the Guild of Working Designers\n\nWhat you did: I gathered the internal requirements, did some user interviews, and ran some first-click tests\n\nThe impact it had: Surveyed the audience for both our main brand and the innovation project and achieved a +22% improvement on the new innovation branding'
     },
@@ -80,7 +92,7 @@ export const BragFormSection = ({ selectedMonth, onMonthChange, onSave, bragData
       
       <div className="bg-[var(--worklog-dark-bg)] rounded-xl p-8 border border-[var(--worklog-text-medium)]/20">
         {/* Form Month Navigation */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center justify-between">
           <button
             onClick={goToPreviousMonth}
             className="text-2xl text-[var(--worklog-text-light)] hover:text-[var(--worklog-brand-green)] hover:cursor-pointer transition-colors"
@@ -125,6 +137,18 @@ export const BragFormSection = ({ selectedMonth, onMonthChange, onSave, bragData
                 d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
               />
             </svg>
+          </button>
+        </div>
+
+        {/* Action Row */}
+        <div className="flex justify-end mt-6 mb-8">
+          <button
+            onClick={handleSave}
+            disabled={isSaving}
+            className="font-bold hover:cursor-pointer px-4 py-2 bg-[var(--worklog-brand-green)] text-black rounded-md text-sm
+          hover:bg-[var(--worklog-card-hover)] hover:text-[var(--worklog-brand-green)] disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {isSaving ? 'Saving...' : 'Save'}
           </button>
         </div>
 
@@ -183,15 +207,7 @@ export const BragFormSection = ({ selectedMonth, onMonthChange, onSave, bragData
           ))}
         </div>
 
-        {/* Save Button */}
-        <div className="flex justify-center">
-          <button 
-            onClick={onSave}
-            className="bg-[var(--worklog-brand-green)] text-black px-8 py-3 rounded-lg font-bold hover:bg-[var(--worklog-brand-green)]/80 transition-colors"
-          >
-            Save Brag Document
-          </button>
-        </div>
+        
       </div>
     </section>
   );

@@ -10,12 +10,12 @@ export const GuidelinesSection = () => {
         </h2>
       </Reveal>
       
-      <div className="bg-[var(--worklog-dark-bg)] rounded-xl p-8 border border-[var(--worklog-text-medium)]/20 text-lg">
+      <div className="bg-[var(--worklog-dark-bg)] rounded-xl p-8 border border-[var(--worklog-text-medium)]/20 text-md">
           <div className="space-y-12">
             {/* What is a Brag Document */}
             <div className="flex gap-8 items-start">
               <div className="w-1/3">
-                <h3 className="text-xl font-bold text-[var(--worklog-brand-green)]">
+                <h3 className="text-sm font-bold text-[var(--worklog-brand-green)]">
                   What is a Brag Document?
                 </h3>
               </div>
@@ -29,7 +29,7 @@ export const GuidelinesSection = () => {
             {/* Why Keep a Brag Document */}
             <div className="flex gap-8 items-start">
               <div className="w-1/3">
-                <h3 className="text-xl font-bold text-[var(--worklog-brand-green)]">
+                <h3 className="text-sm font-bold text-[var(--worklog-brand-green)]">
                   Why Keep a Brag Document?
                 </h3>
               </div>
@@ -46,7 +46,7 @@ export const GuidelinesSection = () => {
             {/* How to Use This Tool */}
             <div className="flex gap-8 items-start">
               <div className="w-1/3">
-                <h3 className="text-xl font-bold text-[var(--worklog-brand-green)]">
+                <h3 className="text-sm font-bold text-[var(--worklog-brand-green)]">
                   How to Use This Tool
                 </h3>
               </div>
@@ -72,7 +72,7 @@ export const GuidelinesSection = () => {
             {/* Don't Skip the "Fuzzy Work" */}
             <div className="flex gap-8 items-start">
               <div className="w-1/3">
-                <h3 className="text-xl font-bold text-[var(--worklog-brand-green)]">
+                <h3 className="text-sm font-bold text-[var(--worklog-brand-green)]">
                   Don't Skip the "Fuzzy Work"
                 </h3>
               </div>
@@ -97,7 +97,7 @@ export const GuidelinesSection = () => {
             {/* Make It Collaborative */}
             <div className="flex gap-8 items-start">
               <div className="w-1/3">
-                <h3 className="text-xl font-bold text-[var(--worklog-brand-green)]">
+                <h3 className="text-sm font-bold text-[var(--worklog-brand-green)]">
                   Make It Collaborative
                 </h3>
               </div>
@@ -116,7 +116,7 @@ export const GuidelinesSection = () => {
             {/* Brag Workshops & Sessions */}
             <div className="flex gap-8 items-start">
               <div className="w-1/3">
-                <h3 className="text-xl font-bold text-[var(--worklog-brand-green)]">
+                <h3 className="text-sm font-bold text-[var(--worklog-brand-green)]">
                   Brag Workshops & Sessions
                 </h3>
               </div>
@@ -144,7 +144,7 @@ export const GuidelinesSection = () => {
             {/* The Big Idea */}
             <div className="flex gap-8 items-start">
               <div className="w-1/3">
-                <h3 className="text-xl font-bold text-[var(--worklog-brand-green)]">
+                <h3 className="text-sm font-bold text-[var(--worklog-brand-green)]">
                   The Big Idea
                 </h3>
               </div>

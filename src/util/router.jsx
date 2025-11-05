@@ -43,7 +43,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <GuidelinesPage />
+                element: <FormPage />
             },
             {
                 path: "guidelines",
@@ -56,6 +56,10 @@ export const router = createBrowserRouter([
             {
                 path: "form",
                 element: <FormPage />
+            },
+            {
+            	path: "form/:year?/:month?",
+            	element: <FormPage />
             }
         ]
     },
