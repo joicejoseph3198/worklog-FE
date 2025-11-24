@@ -3,6 +3,9 @@ import { useNavigate } from "react-router";
 import { Reveal } from "../util/Reveal";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
 import bannerImage from '../assets/images/worklog(s)-banner-image.png';
+import bannerImage2 from '../assets/images/worklog(s)-banner-image-2.png';
+import bannerImage3 from '../assets/images/worklog(s)-banner-image-3.png';
+import { ImageSlider } from "../components/ImageSlider";
 
 export const LandingPage = () => {
     const parsedDate = new Date();
@@ -35,7 +38,7 @@ export const LandingPage = () => {
                 </nav>
             </div>
             {/*HERO BANNER*/}
-            <div className="flex items-center justify-center w-screen h-[80vh] lg:h-[50vh] bg-[var(--worklog-card-bg)] relative">
+            <div className="flex items-center justify-center w-full h-[80vh] lg:h-[50vh] bg-[var(--worklog-card-bg)] relative">
                 <div className="flex items-center justify-center w-full max-w-6xl px-8">
                     <div className="flex flex-col items-center text-[var(--worklog-brand-green)]">
                         <Reveal color="white">
@@ -76,11 +79,13 @@ export const LandingPage = () => {
                     </svg>
                 </div>
             </div>
-            <div className="flex items-center justify-center bg-[var(--worklog-card-bg)] px-10 h-auto">
-                <img
-                    src={bannerImage}
-                    alt=""
-                    className="w-screen h-2/3 object-fill rounded-t-2xl"
+            <div className="flex items-center justify-center w-full bg-[var(--worklog-card-bg)] h-auto pb-20">
+                <ImageSlider 
+                    slides={[
+                        { image: bannerImage, text: "Log your daily work." },
+                        { image: bannerImage2, text: "Navigate through your monthly logs." },
+                        { image: bannerImage3, text: "Track your wins." }
+                    ]} 
                 />
             </div>
         </div>
