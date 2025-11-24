@@ -44,7 +44,7 @@ export const LandingPage = () => {
                         <Reveal color="white">
                             <h1 className="text-xl font-bold text-center">
                                 {" "}
-                                simple. minimal. organized - digital log for
+                                simple. minimal. organized - digital journal for
                                 workspace productivity.
                             </h1>
                         </Reveal>

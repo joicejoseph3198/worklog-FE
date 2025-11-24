@@ -30,7 +30,7 @@ export const BragDocumentSpread = () => {
 
   const handleSave = useCallback(async () => {
     await saveDocument(axios);
-  }, [saveDocument, axios]);
+  }, [saveDocument]);
 
   const outletContext = useMemo(() => ({
     selectedMonth,
@@ -42,7 +42,7 @@ export const BragDocumentSpread = () => {
 
   useEffect(() => {
     fetchDocument(axios, selectedMonth);
-  }, [fetchDocument, axios, selectedMonth]);
+  }, [fetchDocument, selectedMonth]);
 
   // Sync selectedMonth from URL params when present
   useEffect(() => {
