@@ -123,66 +123,13 @@ export const BragDocumentSpread = () => {
   }, [location.pathname, navigate, selectedMonth, year, month]);
 
   return (
-    <div className="bg-[var(--worklog-card-bg)] flex flex-col w-screen">
+    <div className="bg-[var(--worklog-card-bg)] flex flex-col w-screen h-screen">
       <Header />
       
-      <div className="bg-[var(--worklog-dark-bg)] text-white h-screen rounded-xl mx-3 mb-3 overflow-x-scroll">
-        <div className="overflow-x-auto">
-          <div className="min-w-[1200px]">
-            
-            {/* Page Header */}
-            <div className="max-w-6xl mx-auto pt-10">
-              <div className="flex px-2 mb-6 items-center justify-between border-b-1 pb-5 border-[var(--worklog-text-medium)]/30">
-                <div className="flex gap-10 items-center">
-                  <Reveal>
-                    <h2 className="text-xl text-[var(--worklog-brand-green)]">Brag Document</h2>
-                  </Reveal>
-                </div>
-                <div className="flex gap-10 items-center">
-                  <Reveal>
-                    <p className="text-md text-[var(--worklog-text-light)]">
-                     a practical way to improve your resumé or build the case for a promotion.
-                    </p>
-                  </Reveal>
-                </div>
-              </div>
-
-              {/* Inner Navigation Tabs */}
-              <div className="mb-8">
-                <div className="bg-[var(--worklog-dark-bg)] rounded-xl p-2 border border-[var(--worklog-text-medium)]/20">
-                  <nav className="flex space-x-1">
-                    {navigationItems.map((item) => (
-                      <button
-                        key={item.id}
-                        onClick={() => handleTabClick(item.path)}
-                        className={`
-                          flex-1 px-6 py-4 rounded-lg font-bold transition-all duration-200
-                          ${isActiveTab(item.path)
-                            ? 'bg-[var(--worklog-brand-green)] text-black'
-                            : 'text-[var(--worklog-text-light)] hover:text-[var(--worklog-brand-green)] hover:bg-[var(--worklog-card-hover)]'
-                          }
-                        `}
-                      >
-                        <div className="text-center">
-                          <div className="text-lg">{item.label}</div>
-                          <div className={`text-xs mt-1 ${
-                            isActiveTab(item.path) ? 'text-black/70' : 'text-[var(--worklog-text-medium)]'
-                          }`}>
-                            {item.description}
-                          </div>
-                        </div>
-                      </button>
-                    ))}
-                  </nav>
-                </div>
-              </div>
-
-              {/* Content Area */}
-              <div className="min-h-[600px]">
-                <Outlet context={outletContext} />
-              </div>
-            </div>
-          </div>
+      <div className="bg-[var(--worklog-dark-bg)] text-white flex-1 overflow-hidden">
+        {/* Content Area */}
+        <div className="h-full overflow-hidden">
+          <Outlet context={outletContext} />
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { Reveal } from '../util/Reveal';
 
 export const GuidelinesSection = () => {
   return (
-    <section className="mb-16">
+    <section className="mb-16 px-12">
       <Reveal>
         <h2 className="text-2xl font-[NeueBit] text-[var(--worklog-brand-green)] mb-6">
           Guidelines
